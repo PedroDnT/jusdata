@@ -1,0 +1,145 @@
+/* ================================
+   DataJud Chat – Main Stylesheet
+   ================================ */
+
+/* Root variables */
+:root {
+    --user-bg: #0d6efd;          /* Bootstrap primary */
+    --user-text: #ffffff;
+    --ai-bg: #f8f9fa;            /* Bootstrap light */
+    --ai-text: #212529;
+    --error-bg: #dc3545;         /* Bootstrap danger */
+    --error-text: #ffffff;
+    --card-radius: 0.75rem;
+}
+
+/* ---- Layout ---- */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Ensure main stretches */
+main.container {
+    flex: 1 0 auto;
+}
+
+/* Footer always at bottom */
+footer {
+    flex-shrink: 0;
+}
+
+/* ---- Navbar ---- */
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+/* ---- Chat Card ---- */
+
+#chat-card {
+    height: 70vh;               /* Occupy most of viewport */
+    max-height: 80vh;
+    border-radius: var(--card-radius);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---- Messages Area ---- */
+
+#chat-messages {
+    overflow-y: auto;
+    padding-right: 6px;          /* Prevent content under scrollbar */
+}
+
+#chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+#chat-messages::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 3px;
+}
+
+/* ---- Individual Messages ---- */
+
+.message {
+    display: flex;
+    flex-direction: column;
+    max-width: 85%;
+}
+
+.message-user .message-content {
+    background-color: var(--user-bg);
+    color: var(--user-text);
+    border-bottom-right-radius: 0;
+}
+
+.message-ai .message-content {
+    background-color: var(--ai-bg);
+    color: var(--ai-text);
+    border-bottom-left-radius: 0;
+    border: 1px solid #e1e4e8;
+}
+
+.message-error .message-content {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    border-bottom-left-radius: 0;
+}
+
+/* Utility classes applied via JS */
+.message-content {
+    border-radius: 1rem;
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+
+/* Alignments */
+.message-user {
+    align-self: flex-end;
+    text-align: right;
+}
+.message-ai,
+.message-error {
+    align-self: flex-start;
+    text-align: left;
+}
+
+/* ---- Typing Indicator ---- */
+
+#typing-indicator {
+    font-size: 0.9rem;
+}
+
+/* ---- Input Area ---- */
+
+#chat-input {
+    resize: none;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#send-btn {
+    min-width: 90px;
+}
+
+/* ---- Responsive tweaks ---- */
+
+@media (max-width: 576px) {
+    #chat-card {
+        height: 75vh;
+    }
+    .message {
+        max-width: 100%;
+    }
+    #send-btn {
+        min-width: 70px;
+        font-size: 0.9rem;
+    }
+}
