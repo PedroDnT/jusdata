@@ -12,6 +12,7 @@ that offers access to metadata from judicial processes across Brazil.
 """
 
 import re
+import os
 import json
 import logging
 import argparse
@@ -421,6 +422,12 @@ class DatajudAgent:
             "Content-Type": "application/json",
             "Accept": "application/json"
         }
+        
+        # Add API key to headers if available
+        api_key = os.environ.get('DATAJUD_API_KEY')
+        if api_key:
+            headers['X-API-Key'] = api_key
+            logger.debug("Added API key to request headers")
         
         try:
             logger.debug(f"Sending request to: {url}")
